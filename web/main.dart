@@ -1,27 +1,39 @@
 import 'dart:html';
 import 'package:google_maps/google_maps.dart';
 
-void main() {
-  querySelector('#output').text = 'Map above lol';
-
-  final mapOptions = new MapOptions()
+final mapOptions = new MapOptions()
     ..zoom = 8
-    ..center = new LatLng(-34.397, 150.644);
-  new GMap(document.getElementById("map-canvas"), mapOptions);
+    ..center = new LatLng(31.2482, -92.2099);
+final map = new GMap(document.getElementById("map-canvas"), mapOptions);
+final markers = <Marker>[];
 
+void main() {
   querySelector('#button').onClick.listen(showNewMap);
+
+  KmlLayer()
+  	..url = 'https://raw.githubusercontent.com/PaccoTan/kmlFiles/master/test.kml'
+    ..map = map;
 }
 
 void showNewMap(event) {
   double lat  = double.parse(queryInput('#lat_input')),
-         long = double.parse(queryInput('#long_input')),
-         zoom = double.parse(queryInput('#zoom_input'));
+         long = double.parse(queryInput('#long_input'));
 
-  final mapOptions = new MapOptions()
-    ..zoom = zoom
-    ..center = new LatLng(lat, long);
+  String words = queryInput('#title_input'),
+  		 description = queryInput('#descriptionInput');
 
-  new GMap(document.getElementById("map-canvas"), mapOptions);
+  final marker = Marker(MarkerOptions()
+    ..position = new LatLng(lat,long)
+    ..map = map
+    ..title = words);
+  markers.add(marker);
+  final infowindow = InfoWindow(InfoWindowOptions()..content = description);
+
+  marker.onClick.listen((e) {
+    infowindow.open(map, marker);
+  });
+
+  print(markers);
 }
 
 String queryInput(String str) {
