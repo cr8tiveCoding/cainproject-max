@@ -9,23 +9,30 @@
     <title>MapDataInput</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="favicon.ico">
-    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbMd44xmm5Hy-jkNLy_IaxdviNLpPixkY"></script>
     <script defer src="main.dart.js"></script>
 </head>
 
 <body>
 
-<div id="map-canvas" style="width:100%;height:400px;"></div>
+<div id="map-canvas"></div>
 <div id="output"></div>
 
 <label>Latitude</label>
-<input type="number" placeholder="-34.397" id="lat_input">
+<input type="number" placeholder="31.2482" id="lat_input">
+<br>
 
 <label>Longitude</label>
-<input type="number" placeholder="150.644" id="long_input">
+<input type="number" placeholder="-92.2099" id="long_input">
+<br>
 
-<label>Zoom</label>
-<input type="number" placeholder="8" id="zoom_input">
+<label>Title</label>
+<input type="text" placeholder="Dual Enrollment" id="title_input">
+<br>
+
+<label>Description</label>
+<input type="text" placeholder="Baton Rouge High, Lee High, etc." id="descriptionInput">
+<br>
 
 <button id="button">Get Map</button>
 
