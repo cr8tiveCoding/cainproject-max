@@ -19,7 +19,8 @@ void main() {
   final request = PlaceSearchRequest()
     ..location = pyrmont
     ..keyword = "Robert E Lee High School"
-    ..rectangle = LatLngBounds(LatLng(33, -94), LatLng(29,-89))
+    ..radius = 50000
+    //..rectangle = LatLngBounds(LatLng(33, -94), LatLng(29,-89))
     ..types = ['school'];
 
   infowindow = InfoWindow();
